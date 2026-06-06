@@ -9,6 +9,9 @@ spec:
     repoURL: https://github.com/MuhammadFarhanz/argocd-kubernetes-gitops.git
     targetRevision: HEAD
     path: apps/twitter
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: twitter

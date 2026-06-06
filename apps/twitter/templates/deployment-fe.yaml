@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-fe-deployment
+  labels:
+    app: twitter-fe
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    release: {{ .Release.Name }}
+  namespace: { { .Release.Namespace } }
+spec:
+  replicas: { { .Values.frontend.replicaCount } }
+  selector:
+    matchLabels:
+      app: twitter-fe
+  template:
+    metadata:
+      labels:
+        app: twitter-fe
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}-fe
+          image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.frontend.containerPort }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-fe-service
+  labels:
+    app: twitter-fe
+    chart: {{ .Chart.Name }}- {{ .Chart.Version }}
+    release: {{ .Release.Name }}
+  namespace: { { .Release.Namespace } }
+spec:
+  type: {{ .Values.frontend.service.type }}
+  selector:
+    app: twitter-fe
+  ports:
+    - protocol: TCP
+      port: {{ .Values.frontend.service.port }}
+      targetPort: {{ .Values.frontend.service.targetPort }}
