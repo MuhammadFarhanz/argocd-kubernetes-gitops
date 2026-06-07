@@ -1,8 +1,8 @@
 frontend:
   replicaCount: 2
   image:
-    repository: ghcr.io/Muhammad-farhanz/twitter-frontend
-    tag: latest
+    repository: ghcr.io/muhammadfarhanz/twitter-frontend
+    tag: 19df47b77256869fc022cc6010bf62666d7eae3c
   service:
     type: ClusterIP
     port: 80
