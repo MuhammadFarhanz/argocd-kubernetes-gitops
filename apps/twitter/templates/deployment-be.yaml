@@ -6,9 +6,9 @@ metadata:
     app: twitter-be
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     release: {{ .Release.Name }}
-  namespace: { { .Release.Namespace } }
+  namespace: {{ .Release.Namespace }}
 spec:
-  replicas: { { .Values.backend.replicaCount } }
+  replicas: {{ .Values.backend.replicaCount }}
   selector:
     matchLabels:
       app: twitter-be
@@ -31,7 +31,7 @@ metadata:
     app: twitter-be
     chart: {{ .Chart.Name }}- {{ .Chart.Version }}
     release: {{ .Release.Name }}
-  namespace: { { .Release.Namespace } }
+  namespace: {{ .Release.Namespace }}
 spec:
   type: {{ .Values.backend.service.type }}
   selector:

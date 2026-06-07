@@ -6,9 +6,9 @@ metadata:
     app: twitter-fe
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     release: {{ .Release.Name }}
-  namespace: { { .Release.Namespace } }
+  namespace: {{ .Release.Namespace }}
 spec:
-  replicas: { { .Values.frontend.replicaCount } }
+  replicas: {{ .Values.frontend.replicaCount }}
   selector:
     matchLabels:
       app: twitter-fe
@@ -21,7 +21,7 @@ spec:
         - name: {{ .Chart.Name }}-fe
           image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
           ports:
-            - containerPort: {{ .Values.frontend.containerPort }}
+            - containerPort: {{ .Values.frontend.service.targetPort }}
 ---
 apiVersion: v1
 kind: Service
@@ -31,7 +31,7 @@ metadata:
     app: twitter-fe
     chart: {{ .Chart.Name }}- {{ .Chart.Version }}
     release: {{ .Release.Name }}
-  namespace: { { .Release.Namespace } }
+  namespace: {{ .Release.Namespace }}
 spec:
   type: {{ .Values.frontend.service.type }}
   selector:
