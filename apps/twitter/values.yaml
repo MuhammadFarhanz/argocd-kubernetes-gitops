@@ -7,12 +7,11 @@ frontend:
     type: ClusterIP
     port: 80
     targetPort: 3000
-
 backend:
   replicaCount: 2
   image:
-    repository: ghcr.io/Muhammad-farhanz/twitter-backend
-    tag: latest
+    repository: ghcr.io/muhammadfarhanz/twitter-backend
+    tag: 8f93cbbe0131a646aad3f807b9d54d3a656a5a50
   service:
     type: ClusterIP
     port: 80
