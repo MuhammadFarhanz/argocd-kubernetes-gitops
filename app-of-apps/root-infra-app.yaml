@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/org/gitops-config.git
+    repoURL: https://Muhammadfarhanz.github.io/argocd-kubernetes-gitops
     targetRevision: main
     path: argocd/prod/infra
   destination:
