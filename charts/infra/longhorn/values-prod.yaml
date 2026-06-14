@@ -1,2 +1,5 @@
-defaultSettings:
-  defaultReplicaCount: 1
+longhorn:
+  preUpgradeChecker:
+    jobEnabled: false
+  persistence:
+    defaultClassReplicaCount: 1
