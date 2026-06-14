@@ -28,3 +28,6 @@ Apply the root applications to let ArgoCD manage the rest of the resources.
 kubectl apply -f app-of-apps/root-infra-app.yaml
 kubectl apply -f app-of-apps/root-workload-app.yaml
 ```
+
+## Note:
+- Using an ApplicationSet is a much better approach if you plan to manage more than one environment or deploy these tools across multiple clusters
