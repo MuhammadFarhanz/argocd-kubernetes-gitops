@@ -18,6 +18,8 @@ spec:
         values: |
           preUpgradeChecker:
             jobEnabled: false
+          defaultSettings:
+            defaultReplicaCount: 1
     - repoURL: https://github.com/MuhammadFarhanz/argocd-kubernetes-gitops.git
       targetRevision: main
       ref: values
