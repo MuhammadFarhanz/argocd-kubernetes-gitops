@@ -11,14 +11,11 @@ spec:
   sources:
     - chart: longhorn
       repoURL: https://charts.longhorn.io/
-      targetRevision: v1.8.1 # Replace with the Longhorn version you'd like to install or upgrade to
+      targetRevision: v1.12.0 # Replace with the Longhorn version you'd like to install or upgrade to
       helm:
-        releaseName: longhorn
-        valuesFiles:
-          - $values/charts/infra/longhorn/values-prod.yaml
-    - repoURL: https://github.com/MuhammadFarhanz/argocd-kubernetes-gitops.git
-      targetRevision: main
-      ref: values
+        values: |
+          preUpgradeChecker:
+            jobEnabled: false
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
