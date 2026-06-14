@@ -15,11 +15,9 @@ spec:
       helm:
         valuesFiles:
           - $values/charts/infra/longhorn/values-prod.yaml
-        values: |
-          preUpgradeChecker:
-            jobEnabled: false
-          defaultSettings:
-            defaultReplicaCount: 1
+        parameters:
+          - name: preUpgradeChecker.jobEnabled
+            value: "false"
     - repoURL: https://github.com/MuhammadFarhanz/argocd-kubernetes-gitops.git
       targetRevision: main
       ref: values
