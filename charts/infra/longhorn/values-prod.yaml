@@ -1,4 +1,4 @@
 preUpgradeChecker:
   jobEnabled: false
 defaultSettings:
-  defaultReplicaCount: 2
+  defaultReplicaCount: 1
