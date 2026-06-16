@@ -12,7 +12,7 @@ backend:
   replicaCount: 2
   image:
     repository: ghcr.io/muhammadfarhanz/twitter-backend
-    tag: 8f93cbbe0131a646aad3f807b9d54d3a656a5a50
+    tag: 4f91c4b2ddf9ae37043d4b11b91e151069f7d079
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
