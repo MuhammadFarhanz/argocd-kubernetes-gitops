@@ -1,13 +1,30 @@
-# prometheus:
-#   prometheusSpec:
-#     retention: 7d
-#     storageSpec:
-#       volumeClaimTemplate:
-#         spec:
-#           accessModes: ["ReadWriteOnce"]
-#           resources:
-#             requests:
-#               storage: 4Gi
-# grafana:
-#   enabled: true
-# serviceMonitorSelectorNilUsesHelmValues: false
+alertManager:
+  enabled: false
+grafana:
+  enabled: true
+  fullnameOverride: grafana
+  adminPassword: admin
+prometheusOperator:
+  enabled: true
+  fullnameOverride: prometheus-operator
+kube-state-metrics:
+  enabled: true
+  fullnameOverride: kube-state-metrics
+kubelet:
+  serviceMonitor:
+    enabled: true
+    interval: 30s
+prometheus:
+  fullnameOverride: prometheus
+  serviceAccount:
+    create: true
+    name: "prometheus-k8s"
+  prometheusSpec:
+    retention: 15d
+prometheus-node-exporter:
+  enabled: true
+  fullnameOverride: node-exporter
+  prometheus:
+    serviceMonitor:
+      enabled: true
+      interval: 30s
