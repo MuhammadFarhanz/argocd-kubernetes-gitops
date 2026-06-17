@@ -22,21 +22,3 @@ spec:
           image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
           ports:
             - containerPort: {{ .Values.frontend.service.targetPort }}
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ .Release.Name }}-fe-service
-  labels:
-    app: twitter-fe
-    chart: {{ .Chart.Name }}- {{ .Chart.Version }}
-    release: {{ .Release.Name }}
-  namespace: {{ .Release.Namespace }}
-spec:
-  type: {{ .Values.frontend.service.type }}
-  selector:
-    app: twitter-fe
-  ports:
-    - protocol: TCP
-      port: {{ .Values.frontend.service.port }}
-      targetPort: {{ .Values.frontend.service.targetPort }}
