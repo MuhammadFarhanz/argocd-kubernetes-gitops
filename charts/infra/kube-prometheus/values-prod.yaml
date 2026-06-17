@@ -1,4 +1,4 @@
-alertManager:
+alertmanager:
   enabled: false
 grafana:
   enabled: true
@@ -13,18 +13,19 @@ kube-state-metrics:
 kubelet:
   serviceMonitor:
     enabled: true
-    interval: 30s
+    interval: 120s
 prometheus:
-  fullnameOverride: prometheus
   serviceAccount:
     create: true
     name: "prometheus-k8s"
   prometheusSpec:
-    retention: 15d
+    retention: 2d
+    tsdb:
+      walCompression: true
 prometheus-node-exporter:
   enabled: true
   fullnameOverride: node-exporter
   prometheus:
     serviceMonitor:
       enabled: true
-      interval: 30s
+      interval: 120s
