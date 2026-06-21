@@ -1,3 +1,6 @@
+defaultRules:
+  alertmanager: false
+  kubeEtcd: false
 alertmanager:
   enabled: false
 grafana:
@@ -29,3 +32,5 @@ prometheus-node-exporter:
     serviceMonitor:
       enabled: true
       interval: 120s
+kubeEtcd:
+  enabled: false
