@@ -13,16 +13,38 @@ This repository manages cluster infrastructure and workloads, powered by **Argo 
 │   ├── applications/              # Application definitions for workloads
 │   └── infra/                     # Infrastructure definitions/Cluster Level Tooling (Cert-Manager, Nginx, Prometheus, etc)
 ├── charts/
-    ├── applications/              # Custom Helm charts for applications/k8s manifests
-    │   └── app-example/
-    └── infra/                     # Overrides and values for infrastructure charts
-        ├── cert-manager/
-        └── external-secret/
+│    ├── applications/              # Custom Helm charts for applications/k8s manifests
+│    │   └── app-example/
+│    └── infra/                     # Overrides and values for infrastructure charts
+│       ├── cert-manager/
+│       └── external-secret/
+├── cluster/                       # Terraform and cluster bootstrap configuration
+│   ├── secret.auto.tfvars
+│   ├── secret.auto.tfvars.example
+│   ├── talos.tf
+│   ├── terraform.tfstate
+│   ├── terraform.tfstate.backup
+│   └── variable.auto.tfvars
+├── components.yaml                # Metrics Server installation manifests
+├── docker-compose.yaml            # Local development stack definition
+├── readme.md
 ```
 
-## Bootstrap
+## Cluster Boostrap
 
-Apply the root applications to let ArgoCD manage the rest of the resources.
+1. Command:
+   - terraform apply
+   - terraform output -raw kubeconfig > ~/.kube/config
+   - terraform output -raw talosconfig > ~/.talos/config
+
+2. Deploy metrics server
+   - kubectl apply -f components.yaml 
+
+2. Install Argocd
+   - kubectl create namespace argocd
+   - kubectl apply -n argocd --server-side --force-conflicts -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+3. Apply the root applications to let ArgoCD manage the rest of the resources.
 
 ```bash
 kubectl apply -f app-of-apps/root-infra-app.yaml
@@ -30,4 +52,5 @@ kubectl apply -f app-of-apps/root-workload-app.yaml
 ```
 
 ## Note:
+
 - Using an ApplicationSet is a much better approach if you plan to manage more than one environment or deploy these tools across multiple clusters
