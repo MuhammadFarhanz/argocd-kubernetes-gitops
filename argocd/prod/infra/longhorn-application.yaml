@@ -11,11 +11,16 @@ spec:
   sources:
     - chart: longhorn
       repoURL: https://charts.longhorn.io/
-      targetRevision: v1.13.0 # Replace with the Longhorn version you'd like to install or upgrade to
+      targetRevision: v1.13.0
       helm:
         values: |
           preUpgradeChecker:
             jobEnabled: false
+          persistence:
+            defaultClass: true
+            defaultClassReplicaCount: 1
+          defaultSettings:
+            defaultReplicaCount: 1
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
