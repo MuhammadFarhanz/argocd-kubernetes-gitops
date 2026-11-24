@@ -7,7 +7,7 @@ ingressRoute:
       - web
 providers:
   kubernetesGateway:
-    enabled: true
+    enabled: false #later maybe
 gateway:
   listeners:
     web:
