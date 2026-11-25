@@ -12,6 +12,9 @@ spec:
     - repoURL: https://metallb.github.io/metallb
       chart: metallb
       targetRevision: 0.16.2
+      helm:
+        valueFiles:
+          - $values/charts/infra/metallb/values.yaml
     - repoURL: https://github.com/MuhammadFarhanz/argocd-kubernetes-gitops.git
       targetRevision: main
       path: charts/infra/metallb/config
