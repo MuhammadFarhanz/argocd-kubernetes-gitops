@@ -18,6 +18,7 @@ spec:
     - repoURL: https://github.com/MuhammadFarhanz/argocd-kubernetes-gitops.git
       targetRevision: main
       path: charts/infra/metallb/config
+      ref: values
   syncPolicy:
     automated:
       prune: true
