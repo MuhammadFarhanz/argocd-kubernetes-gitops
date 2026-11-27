@@ -92,7 +92,8 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: navidrome.home
+    # - host: navidrome.home
+    - host: navidrome.192.168.1.240.nip.io
       http:
         paths:
           - path: /
