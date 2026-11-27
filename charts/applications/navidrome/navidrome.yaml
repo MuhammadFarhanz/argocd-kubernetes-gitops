@@ -84,3 +84,21 @@ spec:
   ports:
     - port: 4533
       targetPort: 4533
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: navidrome
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: navidrome.home
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: navidrome
+                port:
+                  number: 4533
