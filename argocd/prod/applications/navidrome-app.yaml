@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/MuhammadFarhanz/argocd-kubernetes-gitops.git
     targetRevision: main
-    path: charts/applications/navidrome
+    path: manifests/applications/navidrome
   destination:
     server: https://kubernetes.default.svc
     namespace: navidrome

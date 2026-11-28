@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/MuhammadFarhanz/argocd-kubernetes-gitops.git
     targetRevision: main
-    path: charts/applications/twitter
+    path: manifests/applications/twitter
     helm:
       valueFiles:
         - values.yaml

@@ -1,0 +1,19 @@
+# to tell Talos which disk to provision for Longhorn. Talos will automatically mount the volume at /var/mnt/longhorn
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: longhorn
+provisioning:
+  diskSelector:
+    match: disk.dev_path == '/dev/vdb'
+  minSize: 400GB
+---
+machine:
+  kubelet:
+    extraMounts:
+      - destination: /var/mnt/longhorn
+        type: bind
+        source: /var/mnt/longhorn
+        options:
+          - bind
+          - rshared
+          - rw
